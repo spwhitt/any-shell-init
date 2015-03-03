@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+target_shell=$1
+
+function setEnv() {
+    name=$1
+    value=$2
+    case $target_shell in
+        fish)
+            echo "setenv -x $name $value;"
+        ;;
+        bash|sh|zsh)
+            echo "export $name=\"$value\";"
+        ;;
+        ksh|tcsh)
+            echo "setenv $name \"$value\";"
+        ;;
+        *)
+            echo "ERROR: Unknown target shell"
+            exit -1
+        ;;
+    esac
+
+    # Also set the variable locally, in case it's used in the init script
+    export $name="$value"
+}
+
+function appendEnv() {
+    name=$1
+    value=$2
+    case $target_shell in
+        fish)
+            echo "setenv -x $name \$$name $value;"
+        ;;
+        bash|sh|zsh)
+            echo "export $name=\"\$$name\":\"$value\";"
+        ;;
+        ksh|tcsh)
+            echo "setenv $name \"\$$name\":\"$value\";"
+        ;;
+        *)
+            echo "ERROR: Unknown target shell"
+            exit -1
+        ;;
+    esac
+
+    # Also set the variable locally, in case it's used in the init script
+    export $name=${!name}:"$value"
+}
+
+function prependEnv() {
+    name=$1
+    value=$2
+    case $target_shell in
+        fish)
+            echo "setenv -x $name $value \$$name"
+        ;;
+        bash|sh|zsh)
+            echo "export $name=\"$value\":\"\$$name\""
+        ;;
+        ksh|tcsh)
+            echo "setenv $name \"$value\":\"\$$name\";"
+        ;;
+        *)
+            echo "ERROR: Unknown target shell"
+            exit -1
+        ;;
+    esac
+
+    # Also set the variable locally, in case it's used in the init script
+    export $name="$value":${!name}
+}
