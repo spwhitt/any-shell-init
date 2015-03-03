@@ -16,7 +16,7 @@ function setEnv() {
             echo "setenv $name \"$value\";"
         ;;
         *)
-            echo "ERROR: Unknown target shell"
+            echo "ERROR: Unknown target shell" >&2
             exit -1
         ;;
     esac
@@ -39,7 +39,7 @@ function appendEnv() {
             echo "setenv $name \"\$$name\":\"$value\";"
         ;;
         *)
-            echo "ERROR: Unknown target shell"
+            echo "ERROR: Unknown target shell"  >&2
             exit -1
         ;;
     esac
@@ -62,7 +62,7 @@ function prependEnv() {
             echo "setenv $name \"$value\":\"\$$name\";"
         ;;
         *)
-            echo "ERROR: Unknown target shell"
+            echo "ERROR: Unknown target shell"  >&2
             exit -1
         ;;
     esac
