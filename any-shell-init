@@ -12,7 +12,7 @@ function setEnv() {
         bash|sh|zsh)
             echo "export $name=\"$value\";"
         ;;
-        ksh|tcsh)
+        csh|tcsh)
             echo "setenv $name \"$value\";"
         ;;
         *)
@@ -35,7 +35,7 @@ function appendEnv() {
         bash|sh|zsh)
             echo "export $name=\"\$$name\":\"$value\";"
         ;;
-        ksh|tcsh)
+        csh|tcsh)
             echo "setenv $name \"\$$name\":\"$value\";"
         ;;
         *)
@@ -58,7 +58,7 @@ function prependEnv() {
         bash|sh|zsh)
             echo "export $name=\"$value\":\"\$$name\""
         ;;
-        ksh|tcsh)
+        csh|tcsh)
             echo "setenv $name \"$value\":\"\$$name\";"
         ;;
         *)
