@@ -1,5 +1,5 @@
-Any Shell Env
-=============
+Any Shell Init
+==============
 
 This project allows you to write a single shell initilization file in bash, and
 it will work in fish, zsh, bash, sh, tcsh, and csh. Support for other shells is
