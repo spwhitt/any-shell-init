@@ -53,19 +53,6 @@ fi
 target_shell=$1
 script=$2
 
-while getopts "h?il:" opt; do
-    case "$opt" in
-    h|\?)
-        show_help
-        exit 0
-        ;;
-    v)  verbose=1
-        ;;
-    f)  output_file=$OPTARG
-        ;;
-    esac
-done
-
 function setEnv() {
     name=$1
     value=$2
