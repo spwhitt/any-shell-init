@@ -18,23 +18,28 @@ Try It Out
 Start a fish shell and execute:
 
 ```fish
-eval (./any-shell-init examples/simple fish)
+eval (./any-shell-init fish examples/simple)
 echo $EXAMPLE
 ```
 
 Start a bash/zsh/sh shell and execute:
 
 ```bash
-eval `./any-shell-init examples/simple sh`
+eval `./any-shell-init sh examples/simple`
 echo $EXAMPLE
 ```
 
 Start a tcsh/csh shell and execute:
 
 ```tcsh
-eval `./any-shell-init examples/simple csh`
+eval `./any-shell-init csh examples/simple`
 echo $EXAMPLE
 ```
+
+How It Works
+------------
+
+
 
 Limitations
 -----------
