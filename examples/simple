@@ -1,3 +1,11 @@
 setEnv "EXAMPLE" "SET"
 appendEnv "EXAMPLE" "APPEND"
 prependEnv "EXAMPLE" "PREPEND"
+
+if [ is_interactive ]; then
+    appendEnv "EXAMPLE" "INTERACTIVE"
+fi
+
+if [ is_login ]; then
+    appendEnv "EXAMPLE" "LOGIN"
+fi

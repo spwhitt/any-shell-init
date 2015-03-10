@@ -36,11 +36,6 @@ eval `./any-shell-init csh examples/simple`
 echo $EXAMPLE
 ```
 
-How It Works
-------------
-
-
-
 Limitations
 -----------
 
@@ -58,6 +53,5 @@ Examples:
 TODO
 ----
 
-  * Support for differentiating login shells and interactive shells
   * Test suite
   * Finalize design
