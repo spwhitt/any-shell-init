@@ -1,23 +1,70 @@
 #!/usr/bin/env bash
 
-if [ "$#" -ne 1 ]; then
+show_help() {
     echo "Execute a shell agnostic init script
 
 USAGE:
-    any-shell-init SHELL SCRIPT
+    any-shell-init [--interactive] [--login] SHELL SCRIPT
 
 ARGUMENTS:
     SHELL:  Print executable code in this shell's syntax. This code is meant to
             be evaluated by that shell upon startup.
 
     SCRIPT: A bash initialization script to execute. This script will have
-            access to helper functions provided by any-shell-init."
+            access to helper functions provided by any-shell-init.
+
+    --interactive: Set if this command is being called from an interactive shell.
+                   Sets is_interactive to true before calling SCRIPT
+
+    --login: Set if this command is being called from a login shell. Sets
+             is_login to true before calling SCRIPT"
 
     exit -1
+}
+
+is_login=false
+is_interactive=false
+
+while [[ $# > 1 ]]
+do
+    key="$1"
+    case $key in
+        -h|-?|--help)
+            show_help
+        ;;
+        --login)
+            is_login=true
+        ;;
+        --interactive)
+            is_interactive=true
+        ;;
+        *)
+            break
+        ;;
+    esac
+    shift
+done
+
+# Two arguments should remain after parsing the above options
+if [ "$#" -ne 2 ]; then
+    show_help
 fi
 
 target_shell=$1
 script=$2
+
+while getopts "h?il:" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+    v)  verbose=1
+        ;;
+    f)  output_file=$OPTARG
+        ;;
+    esac
+done
 
 function setEnv() {
     name=$1
