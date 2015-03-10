@@ -2,10 +2,10 @@ setEnv "EXAMPLE" "SET"
 appendEnv "EXAMPLE" "APPEND"
 prependEnv "EXAMPLE" "PREPEND"
 
-if [ is_interactive ]; then
+if [ "$is_interactive" = true ]; then
     appendEnv "EXAMPLE" "INTERACTIVE"
 fi
 
-if [ is_login ]; then
+if [ "$is_login" = true ]; then
     appendEnv "EXAMPLE" "LOGIN"
 fi
