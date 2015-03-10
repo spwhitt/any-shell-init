@@ -71,7 +71,7 @@ function setEnv() {
     value=$2
     case $target_shell in
         fish)
-            echo "setenv -x $name $value;"
+            echo "setenv -x $name \"$value\";"
         ;;
         bash|sh|zsh)
             echo "export $name=\"$value\";"
@@ -94,7 +94,7 @@ function appendEnv() {
     value=$2
     case $target_shell in
         fish)
-            echo "setenv -x $name \$$name $value;"
+            echo "setenv -x $name \"\$$name\" \"$value\";"
         ;;
         bash|sh|zsh)
             echo "export $name=\"\$$name\":\"$value\";"
@@ -109,7 +109,7 @@ function appendEnv() {
     esac
 
     # Also set the variable locally, in case it's used in the init script
-    export $name=${!name}:"$value"
+    export $name="${!name}":"$value"
 }
 
 function prependEnv() {
@@ -117,10 +117,10 @@ function prependEnv() {
     value=$2
     case $target_shell in
         fish)
-            echo "setenv -x $name $value \$$name"
+            echo "setenv -x $name \"$value\" \"\$$name\";"
         ;;
         bash|sh|zsh)
-            echo "export $name=\"$value\":\"\$$name\""
+            echo "export $name=\"$value\":\"\$$name\";"
         ;;
         csh|tcsh)
             echo "setenv $name \"$value\":\"\$$name\";"
@@ -132,7 +132,7 @@ function prependEnv() {
     esac
 
     # Also set the variable locally, in case it's used in the init script
-    export $name="$value":${!name}
+    export $name="$value":"${!name}"
 }
 
 source $script
