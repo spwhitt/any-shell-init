@@ -1,5 +1,3 @@
-. any-shell-init $1
-
 setEnv "EXAMPLE" "SET"
 appendEnv "EXAMPLE" "APPEND"
 prependEnv "EXAMPLE" "PREPEND"

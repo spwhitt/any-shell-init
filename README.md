@@ -18,33 +18,31 @@ Try It Out
 Start a fish shell and execute:
 
 ```fish
-source examples/fish_example
+eval (./any-shell-init examples/simple fish)
 echo $EXAMPLE
 ```
 
 Start a bash/zsh/sh shell and execute:
 
 ```bash
-source examples/sh_example
+eval `./any-shell-init examples/simple sh`
 echo $EXAMPLE
 ```
 
 Start a tcsh/csh shell and execute:
 
 ```tcsh
-source examples/csh_example
+eval `./any-shell-init examples/simple csh`
 echo $EXAMPLE
 ```
-
-All of these examples are executing the same initialization script:
-`examples/myinit`
 
 Limitations
 -----------
 
 The initilization script can do many things, but some shell specific features
 must still be implemented on a per-shell basis. Luckily, most projects like Nix
-(the intended use case for this software) do not require these features.
+(the intended use case for this software) do not require these features or can
+afford shell-specific files in these particular cases.
 
 Examples:
 

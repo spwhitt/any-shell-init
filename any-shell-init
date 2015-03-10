@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-target_shell=$1
+script=$1
+target_shell=$2
 
 function setEnv() {
     name=$1
@@ -70,3 +71,5 @@ function prependEnv() {
     # Also set the variable locally, in case it's used in the init script
     export $name="$value":${!name}
 }
+
+source $script
